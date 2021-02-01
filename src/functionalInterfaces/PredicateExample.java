@@ -1,6 +1,10 @@
 package functionalInterfaces;
 
+import java.util.List;
 import java.util.function.Predicate;
+
+import data.Student;
+import data.StudentDataBase;
 
 public class PredicateExample {
 
@@ -8,13 +12,42 @@ public class PredicateExample {
 	static Predicate<Integer> isDivisibleByTwo = (i) -> i % 2 == 0;
 	static Predicate<Integer> isDivisibleByFive = (i) -> i % 5 == 0;
 	
+	static Predicate<Student> filterByGender_male = (student) -> student.getGender().equalsIgnoreCase("male");
+	static Predicate<Student> filterByGradeLevel = (student) -> student.getGradeLevel() >= 3;
+	static Predicate<Student> filterByGpa = (student) -> student.getGpa() >= 3.9;
+	
+	static List<Student> studentList = StudentDataBase.getAllStudents();
 	static int a = 8, b = 10, c = 11;
 	
 	public static void main(String[] args) {
-		predicateSimple();
-		predicateAnd();
-		predicateOr();
-		predicateNegate();
+		// predicateSimple();
+		// predicateAnd();
+		// predicateOr();
+		// predicateNegate();
+		
+		getMaleStudents();
+		getStudentsByGradeFilter();
+		getStudentsByGpaFilter();
+
+	}
+
+	private static void getStudentsByGpaFilter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void getStudentsByGradeFilter() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void getMaleStudents() {
+		System.out.println("getMaleStudents :");
+		studentList.forEach(student -> {
+			if (filterByGender_male.test(student)) {
+				System.out.println(student.getName());
+			}
+		});
 	}
 
 	private static void predicateNegate() {
